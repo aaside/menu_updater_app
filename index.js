@@ -5,7 +5,7 @@ const router = express.Router();
 
 const upload = require('express-fileupload')
 
-const {deleteOriginalFile, moveFileToRepo, updateRepoAndPushToGitHub} = require('./coreFunctions')
+const handleImagesOnRequest = require('./coreFunctions')
 
 app.use(upload())
 
@@ -16,31 +16,18 @@ router.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/client/index.html'));
 });
 
-router.post('/', (req, res, next) => {
-    if (req.files) {
-        const CORRECT_NAME = 'menu_ENG.jpg'
-        const file = req.files.filename;
-
-        file.name = CORRECT_NAME;
-
-        file.mv("./upload/" + file.name, async (err) => {
-            try {
-                if (err) {
-                    console.log(err)
-                    res.send('Error on unpload file')
-                    next(err)
-                } else {
-                    deleteOriginalFile(CORRECT_NAME);
-                    moveFileToRepo(CORRECT_NAME);
-                    await updateRepoAndPushToGitHub();
-                    res.send('Upload correctly')
-                }
-            } catch (err) {
-                console.error('catch err', err)
-            }
-
-        })
+router.post('/', async (req, res, next) => {
+    try{
+        if (req.files) {
+            await handleImagesOnRequest(req.files);
+            res.send('Upload correctly')
+        }
+        next();
+    }catch(err){
+        next();
     }
+
+    
 })
 
 

@@ -3,10 +3,9 @@
 <head>
   <title>Express HTML</title>
   <style>
-
-    .container{
+    .container {
       display: flex;
-      justify-content: center; 
+      justify-content: center;
       padding: 40px;
       width: auto;
       height: 100%;
@@ -14,7 +13,7 @@
 
     .form-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, minmax(200px, 1fr));
       grid-column-gap: 20px;
       grid-row-gap: 20px;
     }
@@ -25,7 +24,7 @@
       justify-content: center;
       align-items: center;
       height: 300px;
-      width: 300px;
+      width: 200px;
       border-radius: 4px;
       border: 2px solid black;
     }
@@ -40,7 +39,7 @@
     }
 
     .overlay:hover {
-      background-color: rgba(0, 0, 0, .1);
+      background-color: rgba(0, 0, 0, .3);
     }
 
     .overlay:hover .icon-upload {
@@ -60,6 +59,11 @@
       border-radius: 50%;
       top: 6px;
       right: 6px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      vertical-align: middle;
+      font-weight: bold;
     }
 
     .icon-upload {
@@ -101,7 +105,7 @@
 
     .submit-button {
       cursor: pointer;
-      grid-column: 4;
+      grid-column: 5;
       padding: 10px;
       border-radius: 5px;
     }
@@ -112,6 +116,48 @@
 <body>
   <div class="container">
     <form class="form-grid" method="post" enctype="multipart/form-data" action="/">
+
+      <div class="background-container">
+        <input style="display: none;" id="cat_input_1" onchange="onFileChanged(event, 'cat_background_1')" type="file"
+          name="cat_1">
+        <div class="overlay">
+          <span class="icon-langauge" style="background-image: url('icons/catalonia.png');">1</span>
+          <span class="icon-upload" onclick="onUploadClick('cat_input_1')"></span>
+          <span class="icon-cancel" onclick="onCancelClick('cat_input_1','cat_background_1')"></span>
+        </div>
+        <div id="cat_background_1" class="background-image"></div>
+      </div>
+      <div class="background-container">
+        <input style="display: none;" id="cat_input_2" onchange="onFileChanged(event, 'cat_background_2')" type="file"
+          name="cat_2">
+        <div class="overlay">
+          <span class="icon-langauge" style="background-image: url('icons/catalonia.png');">2</span>
+          <span class="icon-upload" onclick="onUploadClick('cat_input_2')"></span>
+          <span class="icon-cancel" onclick="onCancelClick('cat_input_2','cat_background_2')"></span>
+        </div>
+        <div id="cat_background_2" class="background-image"></div>
+      </div>
+
+      <div class="background-container">
+        <input style="display: none;" id="esp_input_1" onchange="onFileChanged(event, 'esp_background_1')" type="file"
+          name="esp_1">
+        <div class="overlay">
+          <span class="icon-langauge" style="background-image: url('icons/spain.png');">1</span>
+          <span class="icon-upload" onclick="onUploadClick('esp_input_1')"></span>
+          <span class="icon-cancel" onclick="onCancelClick('esp_input_1','esp_background_1')"></span>
+        </div>
+        <div id="esp_background_1" class="background-image"></div>
+      </div>
+      <div class="background-container">
+        <input style="display: none;" id="esp_input_2" onchange="onFileChanged(event, 'esp_background_2')" type="file"
+          name="esp_2">
+        <div class="overlay">
+          <span class="icon-langauge" style="background-image: url('icons/spain.png');">2</span>
+          <span class="icon-upload" onclick="onUploadClick('esp_input_2')"></span>
+          <span class="icon-cancel" onclick="onCancelClick('esp_input_2','esp_background_2')"></span>
+        </div>
+        <div id="esp_background_2" class="background-image"></div>
+      </div>
 
       <div class="background-container">
         <input style="display: none;" id="eng_input" onchange="onFileChanged(event, 'eng_background')" type="file"
@@ -125,36 +171,14 @@
       </div>
 
       <div class="background-container">
-        <input style="display: none;" id="cat_input" onchange="onFileChanged(event, 'cat_background')" type="file"
-          name="cat">
+        <input style="display: none;" id="ita_input" onchange="onFileChanged(event, 'ita_background')" type="file"
+          name="ita">
         <div class="overlay">
-          <span class="icon-langauge" style="background-image: url('icons/catalonia.png');"></span>
-          <span class="icon-upload" onclick="onUploadClick('cat_input')"></span>
-          <span class="icon-cancel" onclick="onCancelClick('cat_input','cat_background')"></span>
+          <span class="icon-langauge" style="background-image: url('icons/italy.png');"></span>
+          <span class="icon-upload" onclick="onUploadClick('ita_input')"></span>
+          <span class="icon-cancel" onclick="onCancelClick('ita_input','ita_background')"></span>
         </div>
-        <div id="cat_background" class="background-image"></div>
-      </div>
-
-      <div class="background-container">
-        <input style="display: none;" id="esp_input" onchange="onFileChanged(event, 'esp_background')" type="file"
-          name="esp">
-        <div class="overlay">
-          <span class="icon-langauge" style="background-image: url('icons/spain.png');"></span>
-          <span class="icon-upload" onclick="onUploadClick('esp_input')"></span>
-          <span class="icon-cancel" onclick="onCancelClick('esp_input','esp_background')"></span>
-        </div>
-        <div id="esp_background" class="background-image"></div>
-      </div>
-
-      <div class="background-container">
-        <input style="display: none;" id="de_input" onchange="onFileChanged(event, 'de_background')" type="file"
-          name="de">
-        <div class="overlay">
-          <span class="icon-langauge" style="background-image: url('icons/germany.png');"></span>
-          <span class="icon-upload" onclick="onUploadClick('de_input')"></span>
-          <span class="icon-cancel" onclick="onCancelClick('de_input','de_background')"></span>
-        </div>
-        <div id="de_background" class="background-image"></div>
+        <div id="ita_background" class="background-image"></div>
       </div>
 
       <div class="background-container">
@@ -169,14 +193,14 @@
       </div>
 
       <div class="background-container">
-        <input style="display: none;" id="ita_input" onchange="onFileChanged(event, 'ita_background')" type="file"
-          name="ita">
+        <input style="display: none;" id="de_input" onchange="onFileChanged(event, 'de_background')" type="file"
+          name="de">
         <div class="overlay">
-          <span class="icon-langauge" style="background-image: url('icons/italy.png');"></span>
-          <span class="icon-upload" onclick="onUploadClick('ita_input')"></span>
-          <span class="icon-cancel" onclick="onCancelClick('ita_input','ita_background')"></span>
+          <span class="icon-langauge" style="background-image: url('icons/germany.png');"></span>
+          <span class="icon-upload" onclick="onUploadClick('de_input')"></span>
+          <span class="icon-cancel" onclick="onCancelClick('de_input','de_background')"></span>
         </div>
-        <div id="ita_background" class="background-image"></div>
+        <div id="de_background" class="background-image"></div>
       </div>
 
       <div class="background-container">
