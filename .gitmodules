@@ -1,0 +1,3 @@
+[submodule "webpage"]
+	path = webpage
+	url = git@aaside:aaside/webpage.git
