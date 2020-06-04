@@ -1,0 +1,209 @@
+<html>
+
+<head>
+  <title>Express HTML</title>
+  <style>
+
+    .container{
+      display: flex;
+      justify-content: center; 
+      padding: 40px;
+      width: auto;
+      height: 100%;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-column-gap: 20px;
+      grid-row-gap: 20px;
+    }
+
+    .background-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 300px;
+      width: 300px;
+      border-radius: 4px;
+      border: 2px solid black;
+    }
+
+    .overlay {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    .overlay:hover {
+      background-color: rgba(0, 0, 0, .1);
+    }
+
+    .overlay:hover .icon-upload {
+      display: inline;
+    }
+
+    .overlay:hover .icon-cancel {
+      display: inline;
+    }
+
+    .icon-langauge {
+      position: absolute;
+      height: 32px;
+      width: 32px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 50%;
+      top: 6px;
+      right: 6px;
+    }
+
+    .icon-upload {
+      display: none;
+      cursor: pointer;
+      background: url('/icons/upload_icon.svg');
+      height: 32px;
+      width: 32px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 50%;
+    }
+
+    .icon-upload:hover {
+      background-color: #0202029c;
+    }
+
+    .icon-cancel {
+      display: none;
+      cursor: pointer;
+      background: url('icons/cancel_icon.svg');
+      height: 32px;
+      width: 32px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 50%;
+    }
+
+    .icon-cancel:hover {
+      background-color: #0202029c;
+    }
+
+    .background-image {
+      background-size: cover;
+      background-position: center;
+      height: 100%;
+      width: 100%;
+    }
+
+    .submit-button {
+      cursor: pointer;
+      grid-column: 4;
+      padding: 10px;
+      border-radius: 5px;
+    }
+  </style>
+  <script src="/imagesHandler.js" defer></script>
+</head>
+
+<body>
+  <div class="container">
+    <form class="form-grid" method="post" enctype="multipart/form-data" action="/">
+
+      <div class="background-container">
+        <input style="display: none;" id="eng_input" onchange="onFileChanged(event, 'eng_background')" type="file"
+          name="eng">
+        <div class="overlay">
+          <span class="icon-langauge" style="background-image: url('icons/united-kingdom.png');"></span>
+          <span class="icon-upload" onclick="onUploadClick('eng_input')"></span>
+          <span class="icon-cancel" onclick="onCancelClick('eng_input','eng_background')"></span>
+        </div>
+        <div id="eng_background" class="background-image"></div>
+      </div>
+
+      <div class="background-container">
+        <input style="display: none;" id="cat_input" onchange="onFileChanged(event, 'cat_background')" type="file"
+          name="cat">
+        <div class="overlay">
+          <span class="icon-langauge" style="background-image: url('icons/catalonia.png');"></span>
+          <span class="icon-upload" onclick="onUploadClick('cat_input')"></span>
+          <span class="icon-cancel" onclick="onCancelClick('cat_input','cat_background')"></span>
+        </div>
+        <div id="cat_background" class="background-image"></div>
+      </div>
+
+      <div class="background-container">
+        <input style="display: none;" id="esp_input" onchange="onFileChanged(event, 'esp_background')" type="file"
+          name="esp">
+        <div class="overlay">
+          <span class="icon-langauge" style="background-image: url('icons/spain.png');"></span>
+          <span class="icon-upload" onclick="onUploadClick('esp_input')"></span>
+          <span class="icon-cancel" onclick="onCancelClick('esp_input','esp_background')"></span>
+        </div>
+        <div id="esp_background" class="background-image"></div>
+      </div>
+
+      <div class="background-container">
+        <input style="display: none;" id="de_input" onchange="onFileChanged(event, 'de_background')" type="file"
+          name="de">
+        <div class="overlay">
+          <span class="icon-langauge" style="background-image: url('icons/germany.png');"></span>
+          <span class="icon-upload" onclick="onUploadClick('de_input')"></span>
+          <span class="icon-cancel" onclick="onCancelClick('de_input','de_background')"></span>
+        </div>
+        <div id="de_background" class="background-image"></div>
+      </div>
+
+      <div class="background-container">
+        <input style="display: none;" id="fr_input" onchange="onFileChanged(event, 'fr_background')" type="file"
+          name="fr">
+        <div class="overlay">
+          <span class="icon-langauge" style="background-image: url('icons/france.png');"></span>
+          <span class="icon-upload" onclick="onUploadClick('fr_input')"></span>
+          <span class="icon-cancel" onclick="onCancelClick('fr_input','fr_background')"></span>
+        </div>
+        <div id="fr_background" class="background-image"></div>
+      </div>
+
+      <div class="background-container">
+        <input style="display: none;" id="ita_input" onchange="onFileChanged(event, 'ita_background')" type="file"
+          name="ita">
+        <div class="overlay">
+          <span class="icon-langauge" style="background-image: url('icons/italy.png');"></span>
+          <span class="icon-upload" onclick="onUploadClick('ita_input')"></span>
+          <span class="icon-cancel" onclick="onCancelClick('ita_input','ita_background')"></span>
+        </div>
+        <div id="ita_background" class="background-image"></div>
+      </div>
+
+      <div class="background-container">
+        <input style="display: none;" id="nl_input" onchange="onFileChanged(event, 'nl_background')" type="file"
+          name="nl">
+        <div class="overlay">
+          <span class="icon-langauge" style="background-image: url('icons/netherlands.png');"></span>
+          <span class="icon-upload" onclick="onUploadClick('nl_input')"></span>
+          <span class="icon-cancel" onclick="onCancelClick('nl_input','nl_background')"></span>
+        </div>
+        <div id="nl_background" class="background-image"></div>
+      </div>
+
+      <div class="background-container">
+        <input style="display: none;" id="ru_input" onchange="onFileChanged(event, 'ru_background')" type="file"
+          name="ru">
+        <div class="overlay">
+          <span class="icon-langauge" style="background-image: url('icons/russia.png');"></span>
+          <span class="icon-upload" onclick="onUploadClick('ru_input')"></span>
+          <span class="icon-cancel" onclick="onCancelClick('ru_input','ru_background')"></span>
+        </div>
+        <div id="ru_background" class="background-image"></div>
+      </div>
+
+      <input class="submit-button" type="submit" value="UPLOAD">
+    </form>
+  </div>
+</body>
+
+</html>

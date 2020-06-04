@@ -9,9 +9,11 @@ const {deleteOriginalFile, moveFileToRepo, updateRepoAndPushToGitHub} = require(
 
 app.use(upload())
 
+//To serve static files such as images, CSS files, and JavaScript files, use the express.static built-in middleware function in Express.
+app.use( express.static( __dirname + '/client' ));
+
 router.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname + '/html/index.html'));
-    //__dirname : It will resolve to your project folder.
+    res.sendFile(path.join(__dirname + '/client/index.html'));
 });
 
 router.post('/', (req, res, next) => {
