@@ -84,7 +84,7 @@ function checkFilesAndReturnAllPromises(files){
    }
    if (files.ru) {
       const RU_FILENAME = 'menu_RU.jpg'
-      files.ru.name = ru_FILENAME;
+      files.ru.name = RU_FILENAME;
 
       const ruPromise = createPromise(files.ru)
       allPromises.push(ruPromise);
