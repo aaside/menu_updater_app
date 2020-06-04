@@ -5,7 +5,7 @@ const router = express.Router();
 
 const upload = require('express-fileupload')
 
-const {deleteOriginalFile, moveFileToRepo, updateRepoAndPushToGitHub} = require('./gitScript')
+const {deleteOriginalFile, moveFileToRepo, updateRepoAndPushToGitHub} = require('./coreFunctions')
 
 app.use(upload())
 
