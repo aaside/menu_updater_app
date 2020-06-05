@@ -48,7 +48,7 @@ function checkFilesAndReturnAllPromises(files, next) {
    if (files.esp_1) {
       if (checkCorrectImageFormat(files.esp_1)) {
          const ESP_1_FILENAME = 'menu_ESP_1.jpg'
-         files.esp_1.name = esp_1_FILENAME;
+         files.esp_1.name = ESP_1_FILENAME;
 
          const espPromise = createPromise(files.esp_1)
          allPromises.push(espPromise);
@@ -60,7 +60,7 @@ function checkFilesAndReturnAllPromises(files, next) {
    if (files.esp_2) {
       if (checkCorrectImageFormat(files.esp_2)) {
          const ESP_2_FILENAME = 'menu_ESP_2.jpg'
-         files.esp_2.name = esp_2_FILENAME;
+         files.esp_2.name = ESP_2_FILENAME;
 
          const espPromise = createPromise(files.esp_2)
          allPromises.push(espPromise);
@@ -196,7 +196,7 @@ async function deleteOgAndMoveToRepo(file) {
       console.log(`Error on delete file${file.name}`)
       return false
    } catch (err) {
-      console.error(`Error on unpload file${file.name}`)
+      console.error(`Error on unpload file${file.name}`,err)
       return false;
    }
 }
@@ -226,6 +226,8 @@ function updateRepoAndPushToGitHub() {
             console.log('repo successfully pushed');
          }, (failed) => {
             console.log('repo push failed', failed);
+         }).finally(()=>{
+            shellJs.cd('../');
          });
    }
 
