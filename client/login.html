@@ -1,0 +1,52 @@
+<html>
+
+<head>
+    <title>Correct Upload</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            padding: 40px;
+            width: auto;
+            height: 100vh;
+        }
+        .form-container{
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sub-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 21px;
+        }
+
+        .icon-tik {
+            background-image: url('icons/tick.svg');
+            height: 95px;
+            width: 95px;
+            background-size: cover;
+            background-position: center;
+            margin: 20px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form class="form-container" method="post" action="/login">
+            <label for="user">Usuari</label>
+            <input id="user" type="text" name="user">
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password">
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+
+</html>

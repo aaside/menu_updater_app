@@ -7,6 +7,8 @@ const upload = require('express-fileupload')
 
 const handleImagesOnRequest = require('./coreFunctions')
 const errorHandler = require('./errorMiddleware')
+ 
+app.use(express.urlencoded({ extended: true }));
 
 app.use(upload())
 
@@ -14,15 +16,20 @@ app.use(upload())
 app.use( express.static( __dirname + '/client' ));
 
 router.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname + '/client/index.html'));
+    res.sendFile(path.join(__dirname + '/client/login.html'));
+    //res.sendFile(path.join(__dirname + '/client/imageUploader.html'));
 });
+
+router.post('/login',(req, res, next) => {
+    console.log('REQUEST...',req.body)    
+})
 
 router.post('/', async (req, res, next) => {
     try{
         if (req.files) {
             const success = await handleImagesOnRequest(req.files,next);
             if(success){
-                res.sendFile(path.join(__dirname + '/client/uploadCorrectly.html'));                
+                res.sendFile(path.join(__dirname + '/client/uploadedCorrectly.html'));                
             }
         }else{
             next(`No s'han trobat imatges`)
