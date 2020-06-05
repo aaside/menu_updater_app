@@ -6,6 +6,7 @@ const router = express.Router();
 const upload = require('express-fileupload')
 
 const handleImagesOnRequest = require('./coreFunctions')
+const errorHandler = require('./errorMiddleware')
 
 app.use(upload())
 
@@ -19,13 +20,14 @@ router.get('/', function (req, res) {
 router.post('/', async (req, res, next) => {
     try{
         if (req.files) {
-            await handleImagesOnRequest(req.files);
-            res.send('Upload correctly')
+            const success = await handleImagesOnRequest(req.files,next);
+            if(success){
+                res.sendFile(path.join(__dirname + '/client/uploadCorrectly.html'));                
+            }
+        }else{
+            next(`No s'han trobat imatges`)
         }
-        next();
-    }catch(err){
-        next();
-    }
+    }catch(err){}
 
     
 })
@@ -33,6 +35,7 @@ router.post('/', async (req, res, next) => {
 
 //add the router
 app.use('/', router);
+app.use(errorHandler);
 app.listen(process.env.port || 3000);
 
 console.log('Running at Port 3000');
