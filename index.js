@@ -7,6 +7,7 @@ const upload = require('express-fileupload')
 
 const handleImagesOnRequest = require('./coreFunctions')
 const errorHandler = require('./errorMiddleware')
+const checkAuth = require('./authLogin')
  
 app.use(express.urlencoded({ extended: true }));
 
@@ -20,8 +21,22 @@ router.get('/', function (req, res) {
     //res.sendFile(path.join(__dirname + '/client/imageUploader.html'));
 });
 
-router.post('/login',(req, res, next) => {
-    console.log('REQUEST...',req.body)    
+router.post('/login',async (req, res, next) => {
+    console.log('REQUEST...',req.body)
+    try{
+        const user = req.body.user;    
+        const password = req.body.password;  
+
+        const authRes = await checkAuth(user,password)
+        
+        if(authRes.result){
+            res.sendFile(path.join(__dirname + '/client/imageUploader.html')); 
+        }else{
+            res.send(authRes.message);
+        }
+    }catch(err){
+        res.send(authRes.message);
+    }
 })
 
 router.post('/', async (req, res, next) => {
