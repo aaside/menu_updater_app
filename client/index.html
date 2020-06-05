@@ -3,28 +3,51 @@
 <head>
     <title>Login</title>
     <style>
+        body {
+            margin: 0px;
+        }
+
         .container {
             display: flex;
             justify-content: center;
             align-content: center;
-            padding: 40px;
             width: auto;
             height: 100vh;
+            background-size: cover;
+            background-position: center;
         }
 
         .form-container {
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            align-content: flex-end;
+            width: 250px;
         }
 
-        .sub-container {
+        .glass {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-content: center;
-            align-items: center;
-            text-align: center;
-            font-size: 21px;
+            align-content: flex-end;
+            padding: 40px;
+            border-radius: 15px;
+            backdrop-filter: saturate(180%) blur(20px);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        label {
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input {
+            margin-bottom: 20px;
+            border-radius: 4px;
+            outline: none;
+            border: 1px solid transparent;
+            padding: 4px;
         }
 
         .icon-tik {
@@ -35,17 +58,46 @@
             background-position: center;
             margin: 20px 0px;
         }
+
+        .submit-button {
+            cursor: pointer;
+            grid-column: 5;
+            padding: 5px;
+            border-radius: 5px;
+            margin-top: 20px;
+            margin-bottom: 0px;
+            font-weight: bold;
+            background-color: dodgerblue;
+            color: white;
+        }
     </style>
+    <script>
+        window.onload = function () {
+            const images = [
+                'https://images.unsplash.com/photo-1591216510259-630ce5d33535?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+                'https://images.unsplash.com/photo-1591038931647-39dec0342065?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+                'https://images.unsplash.com/photo-1590133356909-68d64917b8a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=2111&q=80',
+                'https://images.unsplash.com/photo-1590133356909-68d64917b8a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=2111&q=80',
+                'https://images.unsplash.com/photo-1579975324165-1c30d806fbc7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80',
+                'https://images.unsplash.com/photo-1590398096448-33fb795f7bf6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'
+            ]
+            const n = Math.floor(Math.random() * Math.floor(6))
+            const container = document.getElementById('container')
+            container.style.backgroundImage = 'url(' + images[n] + ')';
+        }
+    </script>
 </head>
 
 <body>
-    <div class="container">
+    <div id="container" class="container">
         <form id="form" class="form-container" method="post" action="/">
-            <label for="user">Usuari</label>
-            <input id="user" type="text" name="user">
-            <label for="password">Password</label>
-            <input id="password" type="password" name="password">
-            <input type="submit" value="Submit">
+            <div class="glass">
+                <label for="user">Usuari</label>
+                <input id="user" type="text" name="user">
+                <label for="password">Password</label>
+                <input id="password" type="password" name="password">
+                <input class="submit-button" type="submit" value="Submit">
+            </div>
         </form>
     </div>
 </body>
