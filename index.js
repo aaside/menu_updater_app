@@ -17,18 +17,17 @@ app.use(upload())
 app.use( express.static( __dirname + '/client' ));
 
 router.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname + '/client/login.html'));
+    res.sendFile(path.join(__dirname + '/client/index.html'));
     //res.sendFile(path.join(__dirname + '/client/imageUploader.html'));
 });
 
-router.post('/login',async (req, res, next) => {
-    console.log('REQUEST...',req.body)
+router.post('/',async (req, res, next) => {
     try{
         const user = req.body.user;    
         const password = req.body.password;  
 
         const authRes = await checkAuth(user,password)
-        
+
         if(authRes.result){
             res.sendFile(path.join(__dirname + '/client/imageUploader.html')); 
         }else{
@@ -39,7 +38,7 @@ router.post('/login',async (req, res, next) => {
     }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/upload', async (req, res, next) => {
     try{
         if (req.files) {
             const success = await handleImagesOnRequest(req.files,next);
